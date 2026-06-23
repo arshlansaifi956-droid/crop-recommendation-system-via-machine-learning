@@ -1,6 +1,6 @@
 # 🌾 Crop Recommendation System via Machine Learning
 
-A smart web application that recommends the most suitable crop to grow based on soil nutrients and environmental conditions. It uses multiple machine learning algorithms so farmers and agriculturalists can compare results and choose the best-fit crop for their land.
+A smart web application that recommends the most suitable crop to grow based on soil nutrients and environmental conditions. It uses multiple machine-learning algorithms so farmers and agriculturalists can make data-driven decisions quickly through a simple REST API.
 
 ---
 
@@ -17,14 +17,15 @@ A smart web application that recommends the most suitable crop to grow based on 
 - [Input Parameters](#input-parameters)
 - [How It Works](#how-it-works)
 - [Contributing](#contributing)
+- [License](#license)
 
 ---
 
 ## 📖 About the Project
 
-Farmers often struggle to decide which crop to plant based on their soil and climate conditions. This project solves that problem by taking key soil and weather parameters as input and recommending the most suitable crop using trained machine learning models.
+Farmers often struggle to decide which crop to plant based on their soil and climate conditions. This project addresses that problem by taking key soil and weather parameters (Nitrogen, Phosphorus, Potassium, temperature, humidity, pH and rainfall) and recommending the most suitable crop using pre-trained machine learning models. The application supports single-model predictions as well as a compare mode that runs multiple algorithms and returns side-by-side results.
 
-The system supports **5 different ML algorithms** and allows users to either pick one or compare all of them side by side — helping make better, data-driven agricultural decisions.
+The system supports **5 different classical ML algorithms** and one CNN-based model for experimentation. Users can choose a specific algorithm or run the compare endpoint to see each model's recommendation and reported accuracy.
 
 ---
 
@@ -32,7 +33,7 @@ The system supports **5 different ML algorithms** and allows users to either pic
 
 - 🌱 Recommends the best crop from **22 different crops**
 - 🤖 Supports **5 ML algorithms** — Decision Tree, Random Forest, Logistic Regression, SVM, and KNN
-- 📊 Displays **model accuracy** for each algorithm
+- 📊 Displays **model accuracy** for each algorithm (computed on a held-out test split)
 - 🔄 **Compare mode** — run all algorithms at once and compare predictions
 - 🌐 Flask-powered REST API with CORS support
 - ⚡ Fast predictions using pre-trained `.pkl` model files
@@ -75,7 +76,7 @@ Rice, Maize, Chickpea, Kidney Beans, Pigeon Peas, Moth Beans, Mung Bean, Black G
 | Best Model          | `best_crop_model.pkl`                     |
 | CNN (Deep Learning) | `crop_recommendation_cnn.h5`              |
 
-> All models are pre-trained and loaded at startup. Accuracy is computed on a 20% test split at runtime.
+> All models are pre-trained and loaded at startup. Accuracy is computed on a 20% test split (this is performed during model evaluation and reported by the app).
 
 ---
 
@@ -101,15 +102,20 @@ crop-recommendation-system/
 ├── requirements.txt                  # Python dependencies
 └── runtime.txt                       # Python version specification
 ```
+
 ### System Workflow Diagram
-![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/7981ff1fd651ef81a8e9ebb14120a50ec2217509/system%20workflow%20diagram..jpg)
+![System workflow diagram](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/7981ff1fd651ef81a8e9ebb14120a50ec2217509/system%20workflow%20diagram..jpg)
+
 ## Home page
+
 ### Models selection
-![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Select%20models.png)
+![Select models](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Select%20models.png)
+
 ### Confusion matrix and models comparison
-![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Model%20accuracy%20and%20confusion%20matrix.png)
+![Model accuracy and confusion matrix](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Model%20accuracy%20and%20confusion%20matrix.png)
+
 ### Results
-![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Results.png)
+![Results](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Results.png)
 
 
 ## 🚀 Getting Started
@@ -123,8 +129,8 @@ crop-recommendation-system/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/crop-recommendation-system.git
-   cd crop-recommendation-system
+   git clone https://github.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning.git
+   cd crop-recommendation-system-via-machine-learning
    ```
 
 2. **Install dependencies**
@@ -168,6 +174,11 @@ Get a crop recommendation using a selected algorithm.
 }
 ```
 
+Example curl:
+```bash
+curl -X POST http://localhost:5000/recommend -H "Content-Type: application/json" -d '{"N":90,"P":42,"K":43,"temperature":20.8,"humidity":82.0,"ph":6.5,"rainfall":202.9,"algorithm":"Random Forest"}'
+```
+
 **Response:**
 ```json
 {
@@ -182,7 +193,7 @@ Get a crop recommendation using a selected algorithm.
 ### `POST /compare`
 Run all algorithms and compare their predictions for the same input.
 
-**Request Body:** *(same as `/recommend`, no `algorithm` field needed)*
+**Request Body:** *(same as `/recommend`, omit the `algorithm` field)*
 
 **Response:**
 ```json
@@ -213,13 +224,13 @@ Run all algorithms and compare their predictions for the same input.
 
 ## ⚙️ How It Works
 
-1. **Data Preprocessing** — The dataset is loaded and split into features (N, P, K, temperature, humidity, ph, rainfall) and labels (crop name). Features are scaled using `StandardScaler` and labels are encoded using `LabelEncoder`.
+1. **Data Preprocessing** — The dataset is loaded and split into features (N, P, K, temperature, humidity, ph, rainfall) and labels (crop name). Features are scaled using `StandardScaler` and labels are encoded with `LabelEncoder` for modeling.
 
-2. **Model Loading** — All pre-trained `.pkl` model files are loaded at startup. Accuracy is calculated on a held-out 20% test set.
+2. **Model Loading** — All pre-trained `.pkl` model files are loaded at startup (along with the scaler and encoder). The models were evaluated using a 20% test split; reported accuracies are the evaluation results.
 
-3. **Prediction** — When the user submits soil/climate data via the API, the input is scaled using the same scaler, passed through the selected model, and the predicted label is decoded back to a crop name.
+3. **Prediction** — When the user submits soil/climate data via the API, the input is scaled using the same scaler, passed through the selected model, and the predicted label is decoded back to a crop name which is returned to the client.
 
-4. **Compare Mode** — All models run predictions on the same input simultaneously, allowing side-by-side comparison.
+4. **Compare Mode** — All classical models run predictions on the same input simultaneously, allowing side-by-side comparison of predictions and their stored accuracies.
 
 ---
 
@@ -235,3 +246,6 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 ---
 
+## License
+
+This project is open-source. Add a LICENSE file to specify the exact license (MIT recommended if you want a permissive license).

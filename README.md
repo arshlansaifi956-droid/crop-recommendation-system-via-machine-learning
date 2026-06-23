@@ -102,7 +102,7 @@ crop-recommendation-system/
 └── runtime.txt                       # Python version specification
 ```
 ### System Workflow Diagram
-![Uploading system workflow diagram..jpg…]()
+https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/7981ff1fd651ef81a8e9ebb14120a50ec2217509/system%20workflow%20diagram..jpg
 
 
 

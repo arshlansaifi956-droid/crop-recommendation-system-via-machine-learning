@@ -1,4 +1,4 @@
-<img width="1182" height="1330" alt="system flow diagram" src="https://github.com/user-attachments/assets/8460970e-a5f7-4eb8-86f7-1c3fbe220611" /><img width="797" height="895" alt="image" src="https://github.com/user-attachments/assets/42716bad-672d-4472-af53-ba9538121483" /><img width="797" height="895" alt="image" src="https://github.com/user-attachments/assets/21fb2dfc-7212-484e-946c-36e411ed2f82" /><img width="797" height="895" alt="image" src="https://github.com/user-attachments/assets/fe371154-2996-4661-8310-f471e1d6f61a" /><img width="1182" height="1330" alt="system flow diagram" src="https://github.com/user-attachments/assets/84d6d333-f1a8-42af-a7b7-8aebecb4304f" /># 🌾 Crop Recommendation System via Machine Learning
+# 🌾 Crop Recommendation System via Machine Learning
 
 A smart web application that recommends the most suitable crop to grow based on soil nutrients and environmental conditions. It uses multiple machine learning algorithms so farmers and agriculturalists can compare results and choose the best-fit crop for their land.
 
@@ -102,7 +102,6 @@ crop-recommendation-system/
 └── runtime.txt                       # Python version specification
 ```
 ### System Workflow Diagram
-![Uploading system workflow diagram..jpg…]()
 
 
 ---

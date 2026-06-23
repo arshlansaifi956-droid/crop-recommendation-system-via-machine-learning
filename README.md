@@ -109,7 +109,7 @@ crop-recommendation-system/
 ### Confusion matrix and models comparison
 ![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Model%20accuracy%20and%20confusion%20matrix.png)
 ### Results
-![image Alt]()
+![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Results.png)
 
 
 ## 🚀 Getting Started

@@ -102,9 +102,10 @@ crop-recommendation-system/
 └── runtime.txt                       # Python version specification
 ```
 ### System Workflow Diagram
+![Uploading system workflow diagram..jpg…]()
 
 
----
+
 
 ## 🚀 Getting Started
 
@@ -229,6 +230,3 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 ---
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).

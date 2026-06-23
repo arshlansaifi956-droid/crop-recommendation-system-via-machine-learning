@@ -105,7 +105,7 @@ crop-recommendation-system/
 ![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/7981ff1fd651ef81a8e9ebb14120a50ec2217509/system%20workflow%20diagram..jpg)
 ## Home page
 ### Models selection
-![image Alt]()
+![image Alt](https://raw.githubusercontent.com/arshlansaifi956-droid/crop-recommendation-system-via-machine-learning/a79e77f2aa56b7ad888c33ad2f967dc792e39e83/Model%20accuracy%20and%20confusion%20matrix.png)
 ### Confusion matrix and models comparison
 ![image Alt]()
 ### Results
